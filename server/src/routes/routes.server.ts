@@ -1,14 +1,10 @@
-import exp from "constants";
 import express from "express";
+import { getStatusController, getServerUptimeController } from "../controllers/controller.server";
 
 const routes = express.Router();
 
-routes.get('/status', (req, res) => {
-    res.send("Server is running");
-});
+routes.get('/status', getStatusController);
 
-routes.get("/uptime", (req, res) => {
-    res.send(`Server uptime: ${process.uptime()}`);
-});
+routes.get("/uptime", getServerUptimeController);
 
 export default routes;
