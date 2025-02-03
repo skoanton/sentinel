@@ -1,13 +1,13 @@
-import { Button } from "./components/ui/button"
+import Header from "./components/Header"
+import SystemInformationCard from "./components/SystemInformationCard"
 
 function App() {
 
 
   return (
     <>
-      <Button>
-        Click me
-      </Button>
+      <Header />
+      <SystemInformationCard />
     </>
   )
 }

@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { getStatusService, getUptimeService } from "../services/service.server";
+import { getSystemInformationService, getUptimeService } from "../services/service.server";
 
 
-export async function getStatusController(req: Request, res: Response) {
+export async function getSystemInformationController(req: Request, res: Response) {
     try {
-        const status = await getStatusService();
-        res.json({ status });
+        const systeminformation = await getSystemInformationService();
+        res.json(systeminformation);
     } catch (error: any) {
         res.status(500).json({ error: error.message });
     }

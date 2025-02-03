@@ -6,10 +6,14 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
+    fs: {
+      allow: [".."],
+    }
   },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      "@shared": path.resolve(__dirname, "../../shared"),
     },
   },
 })
