@@ -8,11 +8,8 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
+      "@/*": ["./src/*"],
       "@shared/*": ["../shared/*"]
-
     },
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -29,5 +26,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "../shared/types"]
+  "include": ["src", "../shared/types", "../shared/prisma"]
 }

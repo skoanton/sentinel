@@ -32,58 +32,8 @@ export default function SystemInformationCard({}: SystemInformationCardProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-      {/* Uptime */}
+    <div className="flex justify-center gap-4">
       <Card>
-        <CardHeader>
-          <CardTitle>Uptime</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-lg font-semibold">
-            {systemInformation.uptime.hours}h
-          </p>
-          <p className="text-lg font-semibold">
-            {systemInformation.uptime.minutes}m
-          </p>
-        </CardContent>
-
-        {/* CPU */}
-
-        <CardHeader>
-          <CardTitle>CPU Information</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p>
-            <strong>Brand:</strong> {systemInformation.cpu.brand}
-          </p>
-          <p>
-            <strong>Speed:</strong> {systemInformation.cpu.speed} GHz
-          </p>
-          <p>
-            <strong>Cores:</strong> {systemInformation.cpu.cores} (
-            {systemInformation.cpu.physicalCores} Physical)
-          </p>
-        </CardContent>
-
-        {/* OS */}
-
-        <CardHeader>
-          <CardTitle>Operating System</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p>
-            <strong>Platform:</strong> {systemInformation.os.platform}
-          </p>
-          <p>
-            <strong>Distro:</strong> {systemInformation.os.distro}
-          </p>
-          <p>
-            <strong>Release:</strong> {systemInformation.os.release}
-          </p>
-        </CardContent>
-
-        {/* RAM */}
-
         <CardHeader>
           <CardTitle>Memory Usage</CardTitle>
         </CardHeader>
@@ -103,7 +53,13 @@ export default function SystemInformationCard({}: SystemInformationCardProps) {
             }
           />
         </CardContent>
-
+        <CardFooter>
+          <p>
+            <strong>Uptime:</strong> {systemInformation.uptime.hours} hours
+          </p>
+        </CardFooter>
+      </Card>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {/* Hard Drives */}
         {systemInformation.hardDrives.map((drive, index) => (
           <Card key={index}>
@@ -124,7 +80,7 @@ export default function SystemInformationCard({}: SystemInformationCardProps) {
             </CardContent>
           </Card>
         ))}
-      </Card>
+      </div>
     </div>
   );
 }

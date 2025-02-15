@@ -21,12 +21,11 @@
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.0",
     "nodemon": "^3.1.9",
-    "prisma": "^6.3.0",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "prisma": "^6.3.1"
   },
   "description": "",
   "dependencies": {
-    "@prisma/client": "^6.3.0",
     "cors": "^2.8.5",
     "dorita980": "^3.1.11",
     "dotenv": "^16.4.7",
@@ -34,6 +33,7 @@
     "mqtt": "^5.10.3",
     "systeminformation": "^5.25.11",
     "ts-node": "^10.9.2",
-    "tsconfig-paths": "^4.2.0"
+    "tsconfig-paths": "^4.2.0",
+    "@prisma/client": "^6.3.1"
   }
 }
