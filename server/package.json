@@ -7,10 +7,10 @@
     "start": "node dist/index.js",
     "dev": "nodemon --watch src --exec ts-node --files src/index.ts",
     "build": "tsc",
-    "prisma:migrate": "npx prisma migrate deploy --schema=./src/prisma/schema.prisma",
-    "prisma:generate": "npx prisma generate --schema=./src/prisma/schema.prisma",
-    "prisma:studio": "npx prisma studio --schema=./src/prisma/schema.prisma",
-    "prisma:seed": "npx ts-node src/prisma/seed.ts",
+    "prisma:migrate": "npx prisma migrate deploy --schema=./prisma/schema.prisma",
+    "prisma:generate": "npx prisma generate --schema=./prisma/schema.prisma",
+    "prisma:studio": "npx prisma studio --schema=./prisma/schema.prisma",
+    "prisma:seed": "npx ts-node prisma/seed.ts",
     "setup": "npm run prisma:generate && npm run prisma:migrate && npm run prisma:seed"
   },
   "keywords": [],
@@ -28,8 +28,10 @@
   "dependencies": {
     "@prisma/client": "^6.3.0",
     "cors": "^2.8.5",
+    "dorita980": "^3.1.11",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "mqtt": "^5.10.3",
     "systeminformation": "^5.25.11",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0"
