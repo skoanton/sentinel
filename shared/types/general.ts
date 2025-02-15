@@ -30,3 +30,16 @@ export type SystemInformation = {
     }[]
 
 }
+
+export type NetworkDevice = {
+    iface: string;
+    ifaceName: string;
+    ip4: string;
+    mac: string;
+    internal: boolean;
+    virtual: boolean;
+};
+
+export type NetworkInformation = {
+    devices: NetworkDevice[];
+};
