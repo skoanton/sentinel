@@ -1,4 +1,4 @@
-import { Prisma, Roomba, RoombaTotalStatistics } from "@prisma/client";
+import { Prisma, Roomba, RoombaTotalStatistics } from "prisma";
 import dorita980 from "dorita980";
 import dotenv from "dotenv";
 import { upsertRoomba, upsertRoombaStatistics } from "../db/roomba.db";

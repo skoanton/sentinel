@@ -30,6 +30,10 @@ Navigate to the **server** directory and install dependencies:
 ```bash
 cd server
 pnpm install
+```
+
+```
+cd prisma
 npm run setup
 ```
 
@@ -63,6 +67,7 @@ The `npm run setup` command sets up Prisma, a database toolkit. Here are some ba
 Run the backend API:
 
 ```bash
+nvm use
 npm run dev
 ```
 
@@ -72,7 +77,7 @@ Navigate to the **client** directory and install dependencies:
 
 ```bash
 cd client
-npm install
+pnpm install
 npm run dev
 ```
 

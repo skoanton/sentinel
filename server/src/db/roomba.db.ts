@@ -1,9 +1,4 @@
-import {
-  Prisma,
-  PrismaClient,
-  Roomba,
-  RoombaTotalStatistics,
-} from "@prisma/client";
+import { Prisma, PrismaClient, Roomba, RoombaTotalStatistics } from "prisma";
 
 const prisma = new PrismaClient();
 
