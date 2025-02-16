@@ -1,4 +1,10 @@
-import { Prisma, PrismaClient, Roomba, RoombaTotalStatistics } from "prisma";
+import {
+  Prisma,
+  PrismaClient,
+  Roomba,
+  RoombaSession,
+  RoombaTotalStatistics,
+} from "prisma";
 
 const prisma = new PrismaClient();
 
@@ -36,6 +42,44 @@ export async function getTotalStatisticsByIdDb(
   roombaId: string
 ): Promise<RoombaTotalStatistics | null> {
   return await prisma.roombaTotalStatistics.findFirst({
+    where: {
+      roombaId: roombaId,
+    },
+  });
+}
+
+export async function getTotalStatisticsByBlidDb(
+  blid: string
+): Promise<RoombaTotalStatistics | null> {
+  return await prisma.roombaTotalStatistics.findFirst({
+    where: {
+      roomba: {
+        blid: blid,
+      },
+    },
+  });
+}
+
+export async function getRoombaByBlidDb(blid: string): Promise<Roomba | null> {
+  return await prisma.roomba.findFirst({
+    where: {
+      blid: blid,
+    },
+  });
+}
+
+export async function saveLastCleaningSessionDb(
+  cleaningSession: Prisma.RoombaSessionCreateInput
+): Promise<any> {
+  return await prisma.roombaSession.create({
+    data: cleaningSession,
+  });
+}
+
+export async function getRoombaSessionsByIdDb(
+  roombaId: string
+): Promise<RoombaSession[]> {
+  return await prisma.roombaSession.findMany({
     where: {
       roombaId: roombaId,
     },

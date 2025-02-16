@@ -78,17 +78,10 @@ model RoombaSession {
 
   // Mission Metadata
   cycle        String   // Cleaning cycle (none, quick, standard, etc.)
-  phase        String   // Current phase (charge, run, pause, etc.)
-  expireM      Int      // Time left before expiration (minutes)
-  rechargeM    Int      // Estimated recharge time (minutes)
   errorCode    Int      // Error code (0 = no errors)
-  notReady     Int      // If the Roomba is not ready (1 = not ready, 0 = ready)
   missionTime  Int      // Total time spent on this mission in minutes
   missionStartTime Int  // Unix timestamp of when the mission started
-  expireTime   Int      // Unix timestamp when mission will expire
-  rechargeTime Int      // Unix timestamp for estimated recharge completion
   initiator    String   // Who started the cleaning (manual, app, schedule, etc.)
-  missionCount Int      // Total number of missions completed
 
   // Session Statistics
   cleanedArea  Int      // Area cleaned in square feet
@@ -101,10 +94,6 @@ model RoombaSession {
   motionBlocked Int     // Number of times motion was blocked
   wheelStalls  Int      // Number of times wheels stalled
   bumperHits   Int      // Number of bumper hits
-
-  // Bin Status
-  binPresent   Boolean  // Whether the dustbin is present
-  binFull      Boolean  // Whether the dustbin is full
 
   createdAt    DateTime @default(now()) // Timestamp when session data was recorded
 }

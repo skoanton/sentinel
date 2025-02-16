@@ -1,13 +1,15 @@
-import RoombaList from "./components/RoombaList";
 import SystemInformationCard from "./components/SystemInformationCard";
 import WeatherCard from "./components/WeatherCard";
 
 function App() {
   return (
-    <div className="flex flex-col gap-4 p-4">
-      <SystemInformationCard />
-      <RoombaList />
-      <WeatherCard />
+    <div className="flex gap-4 p-4">
+      <div>
+        <SystemInformationCard />
+      </div>
+      <div className="ml-auto">
+        <WeatherCard />
+      </div>
     </div>
   );
 }

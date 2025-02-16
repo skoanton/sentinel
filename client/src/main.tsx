@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import RoombaStatisticsTable from "./components/RoombaStatisticsTable.tsx";
 import AppLayout from "./layout/AppLayout.tsx";
 import RoombasPage from "./views/RoombasPage.tsx";
+import RoombaSessionTable from "./components/RoombaSessionTable.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -18,6 +19,7 @@ createRoot(document.getElementById("root")!).render(
             path="/roomba/statistics/:id"
             element={<RoombaStatisticsTable />}
           />
+          <Route path="/roomba/sessions/:id" element={<RoombaSessionTable />} />
         </Route>
       </Routes>
     </BrowserRouter>
