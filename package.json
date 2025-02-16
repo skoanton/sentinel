@@ -1,0 +1,15 @@
+{
+  "name": "sentinel",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "dev:client": "turbo run dev --filter=!server --parallel",
+    "build": "turbo run build --filter=client --filter=server",
+    "build:client": "turbo run build --filter=!server",
+    "start": "turbo run start"
+  },
+  "devDependencies": {
+    "turbo": "^1.11.1"
+  }
+}

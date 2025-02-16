@@ -6,12 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node dist/index.js",
     "dev": "nodemon --watch src --exec ts-node --files src/index.ts",
-    "build": "tsc",
-    "prisma:migrate": "npx prisma migrate deploy --schema=./prisma/schema.prisma",
-    "prisma:generate": "npx prisma generate --schema=./prisma/schema.prisma",
-    "prisma:studio": "npx prisma studio --schema=./prisma/schema.prisma",
-    "prisma:seed": "npx ts-node prisma/seed.ts",
-    "setup": "npm run prisma:generate && npm run prisma:migrate && npm run prisma:seed"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +17,7 @@
     "@types/node": "^22.13.0",
     "nodemon": "^3.1.9",
     "typescript": "^5.7.3",
-    "prisma": "^6.3.1"
+    "prisma": "workspace:*"
   },
   "description": "",
   "dependencies": {
@@ -33,7 +28,6 @@
     "mqtt": "^5.10.3",
     "systeminformation": "^5.25.11",
     "ts-node": "^10.9.2",
-    "tsconfig-paths": "^4.2.0",
-    "@prisma/client": "^6.3.1"
+    "tsconfig-paths": "^4.2.0"
   }
 }

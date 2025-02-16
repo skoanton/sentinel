@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Roomba } from "@prisma/client";
+import type { Roomba } from "prisma";
 
 type RoombaProps = {};
 

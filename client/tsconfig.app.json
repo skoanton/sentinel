@@ -26,5 +26,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "../shared/types", "../shared/prisma"]
+  "include": ["src", "../shared/types"],
+  "exclude": ["dist", "node_modules"]
 }
