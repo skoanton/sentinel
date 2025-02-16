@@ -8,7 +8,7 @@ import networkRoutes from "./routes/routes.network";
 import weatherRoutes from "./routes/routes.weather";
 import roombaRoutes from "./routes/routes.roomba";
 import { connectRoomba } from "./services/service.roomba";
-
+import { runWeatherCron } from "./cron/weather";
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
@@ -26,3 +26,7 @@ app.listen(port, () => {
 });
 
 connectRoomba();
+
+console.log("🚀 Starting cronjobs...");
+runWeatherCron();
+console.log("✅ All cronjobs initialized!");

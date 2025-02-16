@@ -112,13 +112,20 @@ model RoombaSession {
 
 
 model WeatherData {
-  id              String      @id @default(uuid())
-  temperature     Float
-  humidity        Float
-  windSpeed       Float
-  weatherCondition String
-  updatedAt       DateTime @default(now())
+  id                String   @id @default(uuid()) // Unique identifier
+  time              DateTime @default(now()) // Timestamp when the data was recorded
+  main             String   // Main weather condition (e.g., "Clouds")
+  temperature      Float    // Temperature in °C
+  description      String   // Weather description (e.g., "Few clouds")
+  humidity         Int      // Humidity in percentage
+  visibility       Int      // Visibility in meters
+  windSpeed       Float    // Wind speed in m/s
+  windDirection   Int      // Wind direction in degrees
+  sunrise         Int      // Unix timestamp for sunrise
+  sunset          Int      // Unix timestamp for sunset
+  updatedAt       DateTime @updatedAt // Auto-updates when new data is added
 }
+
 
 model NetworkDevice {
   id         String      @id @default(uuid())
