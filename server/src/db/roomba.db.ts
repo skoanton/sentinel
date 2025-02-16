@@ -31,3 +31,13 @@ export async function getAllRoombasDb(): Promise<Roomba[]> {
 export async function getTotalStatisticsDb(): Promise<RoombaTotalStatistics[]> {
   return await prisma.roombaTotalStatistics.findMany();
 }
+
+export async function getTotalStatisticsByIdDb(
+  roombaId: string
+): Promise<RoombaTotalStatistics | null> {
+  return await prisma.roombaTotalStatistics.findFirst({
+    where: {
+      roombaId: roombaId,
+    },
+  });
+}

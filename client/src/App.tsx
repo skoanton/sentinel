@@ -1,13 +1,11 @@
-import Header from "./components/Header";
+import RoombaList from "./components/RoombaList";
 import SystemInformationCard from "./components/SystemInformationCard";
 
 function App() {
   return (
     <>
-      <Header />
-      <main className="h-full p-4">
-        <SystemInformationCard />
-      </main>
+      <SystemInformationCard />
+      <RoombaList />
     </>
   );
 }

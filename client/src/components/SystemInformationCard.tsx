@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { SystemInformation } from "@shared/types/general";
 import { useEffect, useState } from "react";
+import { Clock, HardDrive, MemoryStick } from "lucide-react";
 type SystemInformationCardProps = {};
 
 export default function SystemInformationCard({}: SystemInformationCardProps) {
@@ -32,9 +33,11 @@ export default function SystemInformationCard({}: SystemInformationCardProps) {
   }
 
   return (
-    <div className="flex justify-center gap-4">
-      <Card>
-        <CardHeader>
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-4">
+      {/* Memory Usage */}
+      <Card className="shadow-lg">
+        <CardHeader className="flex flex-row items-center gap-2">
+          <MemoryStick className="w-6 h-6 text-blue-500" />
           <CardTitle>Memory Usage</CardTitle>
         </CardHeader>
         <CardContent>
@@ -53,34 +56,33 @@ export default function SystemInformationCard({}: SystemInformationCardProps) {
             }
           />
         </CardContent>
-        <CardFooter>
-          <p>
-            <strong>Uptime:</strong> {systemInformation.uptime.hours} hours
-          </p>
+        <CardFooter className="flex items-center text-gray-500 text-sm">
+          <Clock className="w-4 h-4 mr-2" />
+          Uptime: {systemInformation.uptime.hours} hours
         </CardFooter>
       </Card>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {/* Hard Drives */}
-        {systemInformation.hardDrives.map((drive, index) => (
-          <Card key={index}>
-            <CardHeader>
-              <CardTitle>{drive.name} Drive</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p>
-                <strong>Size:</strong> {drive.size} GB
-              </p>
-              <p>
-                <strong>Used:</strong> {drive.used} GB
-              </p>
-              <p>
-                <strong>Available:</strong> {drive.available} GB
-              </p>
-              <Progress value={drive.use} />
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+
+      {/* Hard Drives */}
+      {systemInformation.hardDrives.map((drive, index) => (
+        <Card key={index} className="shadow-lg">
+          <CardHeader className="flex flex-row items-center gap-2">
+            <HardDrive className="w-6 h-6 text-green-500" />
+            <CardTitle>{drive.name} Drive</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p>
+              <strong>Size:</strong> {drive.size} GB
+            </p>
+            <p>
+              <strong>Used:</strong> {drive.used} GB
+            </p>
+            <p>
+              <strong>Available:</strong> {drive.available} GB
+            </p>
+            <Progress value={drive.use} />
+          </CardContent>
+        </Card>
+      ))}
     </div>
   );
 }
