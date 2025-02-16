@@ -12,6 +12,7 @@ Copy the `.env.example` files and rename them to `.env` in the **root**, **serve
 cp .env.example .env
 cp server/.env.example server/.env
 cp client/.env.example client/.env
+cp prisma/.env.example prisma/.env
 ```
 
 ### **2. Start PostgreSQL (Docker)**
@@ -28,7 +29,7 @@ Navigate to the **server** directory and install dependencies:
 
 ```bash
 cd server
-npm install
+pnpm install
 npm run setup
 ```
 
