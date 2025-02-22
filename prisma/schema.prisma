@@ -12,3 +12,113 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+model ServerStats {
+  id          String      @id @default(uuid())
+  cpuUsage    Float
+  ramUsage    Float
+  diskUsage   Float
+  networkSpeed Float
+  createdAt   DateTime @default(now())
+}
+
+model DockerContainer {
+  id          String      @id @default(uuid())
+  containerId String   @unique
+  name        String
+  status      String
+  cpuUsage    Float?
+  ramUsage    Float?
+  createdAt   DateTime @default(now())
+}
+
+model Roomba {
+  id        String  @id @default(uuid()) // Unique identifier for each Roomba
+  name      String  // User-defined name for the Roomba
+  ip        String  // IP address of the Roomba
+  mac       String  // MAC address of the Roomba
+  model     String  // Roomba model (e.g., R981040)
+  software  String  // Software version installed
+  blid      String  @unique // Roomba ID used for authentication
+  binPresent Boolean //bin Is there
+  binFull    Boolean //Full or not
+  batteryPercentage  Int    // Current battery level
+  chargingState      String // Charging status ("charging", "idle", etc.)
+  createdAt DateTime @default(now()) // Timestamp when the Roomba was registered
+  updatedAt DateTime @default(now()) // Timestamp when the Roomba was last updated
+  // Relationships
+  totalStatistics RoombaTotalStatistics? // One-to-one
+  sessions        RoombaSession[]        // One-to-many relation with session logs
+}
+
+model RoombaTotalStatistics {
+  id         String  @id @default(uuid()) // Unique identifier
+  roombaId   String  @unique // Links to a specific Roomba
+  roomba     Roomba  @relation(fields: [roombaId], references: [id], onDelete: Cascade) // One-to-one relation
+
+  totalHours       Int   // Total runtime in hours
+  totalCleanedArea Int   // Total area cleaned in square feet
+  totalStuck       Int   // Total number of times the Roomba got stuck
+  totalScrubs      Int   // Total scrubs performed
+  totalDirtPicks   Int   // Total dirt detections
+  totalPanics      Int   // Total number of panic situations
+  totalCliffsFront Int   // Total front cliff detections
+  totalCliffsRear  Int   // Total rear cliff detections
+  totalMotionBlocked Int // Total times motion was blocked
+  totalWheelStalls Int   // Total times wheels stalled
+  totalBumperHits  Int   // Total bumper hits
+
+  updatedAt DateTime @updatedAt // Auto-updates when new data is added
+}
+
+model RoombaSession {
+  id           String   @id @default(uuid()) // Unique session ID
+  roombaId     String   // Links to a specific Roomba
+  roomba       Roomba   @relation(fields: [roombaId], references: [id]) // Many-to-one relation
+
+  // Mission Metadata
+  cycle        String   // Cleaning cycle (none, quick, standard, etc.)
+  errorCode    Int      // Error code (0 = no errors)
+  missionTime  Int      // Total time spent on this mission in minutes
+  missionStartTime Int  // Unix timestamp of when the mission started
+  initiator    String   // Who started the cleaning (manual, app, schedule, etc.)
+
+  // Session Statistics
+  cleanedArea  Int      // Area cleaned in square feet
+  stuckCount   Int      // Number of times Roomba got stuck
+  scrubsCount  Int      // Number of scrubs performed
+  dirtPicks    Int      // Number of dirt detections
+  panics       Int      // Number of panic situations
+  cliffsFront  Int      // Number of front cliff detections
+  cliffsRear   Int      // Number of rear cliff detections
+  motionBlocked Int     // Number of times motion was blocked
+  wheelStalls  Int      // Number of times wheels stalled
+  bumperHits   Int      // Number of bumper hits
+
+  createdAt    DateTime @default(now()) // Timestamp when session data was recorded
+}
+
+
+
+model WeatherData {
+  id                String   @id @default(uuid()) // Unique identifier
+  time              DateTime @default(now()) // Timestamp when the data was recorded
+  main             String   // Main weather condition (e.g., "Clouds")
+  temperature      Float    // Temperature in °C
+  description      String   // Weather description (e.g., "Few clouds")
+  humidity         Int      // Humidity in percentage
+  visibility       Int      // Visibility in meters
+  windSpeed       Float    // Wind speed in m/s
+  windDirection   Int      // Wind direction in degrees
+  sunrise         Int      // Unix timestamp for sunrise
+  sunset          Int      // Unix timestamp for sunset
+  updatedAt       DateTime @updatedAt // Auto-updates when new data is added
+}
+
+
+model NetworkDevice {
+  id         String      @id @default(uuid())
+  ipAddress  String   @unique
+  macAddress String
+  deviceName String?
+  lastSeen   DateTime @default(now())
+}
