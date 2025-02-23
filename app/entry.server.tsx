@@ -11,6 +11,7 @@ import { createReadableStreamFromReadable } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
+import { startCron } from "./cron/cron";
 
 const ABORT_DELAY = 5_000;
 
@@ -104,3 +105,4 @@ function handleBrowserRequest(request: Request, responseStatusCode: number, resp
     setTimeout(abort, ABORT_DELAY);
   });
 }
+startCron();

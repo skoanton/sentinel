@@ -3,6 +3,7 @@ import type { LinksFunction } from "@remix-run/node";
 
 import "./tailwind.css";
 import styles from "./tailwind.css?url";
+import Header from "./components/Header";
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -27,7 +28,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <div className="flex h-screen">
+          <Header />
+          <main className="flex p-4 w-full overflow-y-auto">{children}</main>
+        </div>
         <ScrollRestoration />
         <Scripts />
       </body>
