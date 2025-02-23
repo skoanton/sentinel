@@ -3,7 +3,7 @@ import { BatteryCharging, BatteryFull, Calendar, ChartArea, ClipboardList, Cpu, 
 import { Button } from "./ui/button";
 import axios from "axios";
 import { Roomba } from "@prisma/client";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
 import { useNavigate } from "@remix-run/react";
 type RoombaCardProps = {
   roomba: Roomba;
@@ -41,22 +41,17 @@ export default function RoombaCard({ roomba }: RoombaCardProps) {
       {/* Content */}
       <CardContent className="space-y-3 mt-4">
         <div className="flex items-center gap-3">
-          <Wifi className="w-5 h-5 text-green-500" />
-          <strong>IP:</strong> {roomba.ip}
-        </div>
-
-        <div className="flex items-center gap-3">
           <BatteryFull className="w-5 h-5 text-yellow-500" />
-          <strong>Battery:</strong> {roomba.batteryPercentage}%
+          <strong>Battery:</strong> {roomba.batteryLevel}%
         </div>
 
         <div className="flex items-center gap-3">
-          {roomba.chargingState === "charging" ? (
+          {roomba.state === "charging" ? (
             <BatteryCharging className="w-5 h-5 text-green-500 animate-pulse" />
           ) : (
             <BatteryFull className="w-5 h-5 text-yellow-500" />
           )}
-          <strong>Status:</strong> {roomba.chargingState}
+          <strong>Status:</strong> {roomba.state}
         </div>
 
         <div className="flex items-center gap-3">

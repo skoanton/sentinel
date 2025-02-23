@@ -9,9 +9,7 @@ export async function loader() {
   return json({ roombas });
 }
 
-type roombaProps = {};
-
-export default function roomba({}: roombaProps) {
+export default function roomba() {
   const { roombas } = useLoaderData<{ roombas: Roomba[] }>();
 
   return (

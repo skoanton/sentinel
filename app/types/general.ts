@@ -48,3 +48,23 @@ export type ErrorResponse = {
   message: string;
   status: number;
 };
+
+export type RoombaStatsResponse = {
+  batteryLevel: number;
+  batteryCycles: number;
+  fanSpeed: string;
+  binPresent: boolean;
+  binFull: boolean;
+  state: string;
+
+  totalStatistics: {
+    totalCleaningTime: number;
+    averageMissionTime: number;
+    totalMissions: number;
+    successfulMissions: number;
+    failedMissions: number;
+    canceledMissions: number;
+    totalScrubs: number;
+    totalCleanedArea: number;
+  };
+};

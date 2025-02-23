@@ -5,11 +5,26 @@ const prisma = new PrismaClient();
 //prisma queys here
 export async function upsertRoomba(roomba: Prisma.RoombaCreateInput): Promise<Roomba> {
   const createdRoomba = await prisma.roomba.upsert({
-    where: { blid: roomba.blid },
+    where: { id: roomba.id },
     update: roomba,
     create: roomba,
   });
   return createdRoomba;
+}
+
+export async function createRoombaDb(roomba: Prisma.RoombaCreateInput): Promise<Roomba> {
+  const createdRoomba = await prisma.roomba.create({
+    data: roomba,
+  });
+  return createdRoomba;
+}
+
+export async function getRoombaByNameDb(name: string): Promise<Roomba | null> {
+  return await prisma.roomba.findFirst({
+    where: {
+      name: name,
+    },
+  });
 }
 
 export async function upsertRoombaStatistics(statistics: Prisma.RoombaTotalStatisticsCreateInput): Promise<any> {
@@ -29,28 +44,20 @@ export async function getTotalStatisticsDb(): Promise<RoombaTotalStatistics[]> {
   return await prisma.roombaTotalStatistics.findMany();
 }
 
-export async function getTotalStatisticsByIdDb(roombaId: string): Promise<RoombaTotalStatistics | null> {
-  return await prisma.roombaTotalStatistics.findFirst({
-    where: {
-      roombaId: roombaId,
-    },
-  });
-}
-
-export async function getTotalStatisticsByBlidDb(blid: string): Promise<RoombaTotalStatistics | null> {
+export async function getTotalStatisticsByIdDb(id: string): Promise<RoombaTotalStatistics | null> {
   return await prisma.roombaTotalStatistics.findFirst({
     where: {
       roomba: {
-        blid: blid,
+        id: id,
       },
     },
   });
 }
 
-export async function getRoombaByBlidDb(blid: string): Promise<Roomba | null> {
+export async function getRoombaByIdDb(id: string): Promise<Roomba | null> {
   return await prisma.roomba.findFirst({
     where: {
-      blid: blid,
+      id: id,
     },
   });
 }
