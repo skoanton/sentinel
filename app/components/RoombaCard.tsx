@@ -5,6 +5,7 @@ import axios from "axios";
 import { Roomba } from "@prisma/client";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
 import { useNavigate } from "@remix-run/react";
+import { formatDate } from "~/helpers/helpers";
 type RoombaCardProps = {
   roomba: Roomba;
 };
@@ -77,11 +78,11 @@ export default function RoombaCard({ roomba }: RoombaCardProps) {
         <div className="flex justify-between text-gray-500 text-sm">
           <p className="flex items-center gap-2">
             <Calendar className="w-4 h-4" />
-            Registered: {new Date(roomba.createdAt).toLocaleDateString()}
+            Registered: {formatDate(new Date(roomba.createdAt))}
           </p>
           <p className="flex items-center gap-2">
             <Calendar className="w-4 h-4" />
-            Last Update: {new Date(roomba.updatedAt).toLocaleDateString()}
+            Last Update: {formatDate(new Date(roomba.updatedAt))}
           </p>
         </div>
 
